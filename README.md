@@ -23,10 +23,10 @@ Just clone or download this repo, and install as follows:
 ```
 dotnet new --install <path to this template directory>
 ```
-You can see it listed `dotnet new -l` with the shortname `vuets` so in order to create new projects using this template just use that shortname.
+You can see it listed `dotnet new -l` with the shortname `myspa` so in order to create new projects using this template just use that shortname.
 
 ```
-dotnet new vuets -n myspa -o myspa
+dotnet new myspa -n myspa -o myspa
 cd myspa
 dotnet restore
 npm install

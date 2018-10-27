@@ -14,10 +14,10 @@ module.exports = (env) => {
         stats: { modules: false },
         context: __dirname,
         resolve: { extensions: [ '.js', '.ts' ] },
-        entry: { 'main': './ClientApp/boot.ts' },
+        entry: { 'main': './ClientApp/boot.js' },
         module: {
             rules: [
-                { test: /\.vue\.html$/, include: /ClientApp/, loader: 'vue-loader', options: { loaders: { js: 'ts-loader' } } },
+                { test: /\.vue(\.html)?$/, include: /ClientApp/, loader: 'vue-loader', options: { loaders: { js: 'ts-loader' } } },
                 { test: /\.ts$/, include: /ClientApp/, use: [
                     {
                         loader: 'ts-loader',
@@ -27,7 +27,24 @@ module.exports = (env) => {
                     }
                 ] },
                 { test: /\.css$/, use: isDevBuild ? [ 'style-loader', 'css-loader' ] : ExtractTextPlugin.extract({ use: 'css-loader?minimize' }) },
-                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
+                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' },
+                {
+                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 4096,
+                                fallback: {
+                                    loader: 'file-loader',
+                                    options: {
+                                        name: 'fonts/[name].[hash:8].[ext]'
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
             ]
         },
         output: {
