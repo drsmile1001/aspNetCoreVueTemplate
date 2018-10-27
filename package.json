@@ -3,8 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
     "@types/webpack-env": "^1.13.6",
     "aspnet-webpack": "^3.0.0",
+    "babel-loader": "^8.0.4",
     "bootstrap": "^3.3.6",
     "css-loader": "^1.0.0",
     "event-source-polyfill": "^1.0.3",
