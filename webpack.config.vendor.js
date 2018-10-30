@@ -5,17 +5,15 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = (env) => {
     const isDevBuild = !(env && env.prod);
-    const devMode = isDevBuild ? 'development':'production';
+    const devMode = isDevBuild ? 'development' : 'production';
     const extractCSS = new ExtractTextPlugin('vendor.css');
 
     return [{
         mode: devMode,
         stats: { modules: false },
-        resolve: { extensions: [ '.js' ] },
+        resolve: { extensions: ['.js'] },
         entry: {
             vendor: [
-                'bootstrap',
-                'bootstrap/dist/css/bootstrap.css',
                 'event-source-polyfill',
                 'isomorphic-fetch',
                 'jquery',
@@ -26,7 +24,24 @@ module.exports = (env) => {
         module: {
             rules: [
                 { test: /\.css(\?|$)/, use: extractCSS.extract({ use: isDevBuild ? 'css-loader' : 'css-loader?minimize' }) },
-                { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
+                { test: /\.(png|svg)(\?|$)/, use: 'url-loader?limit=100000' },
+                {
+                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 4096,
+                                fallback: {
+                                    loader: 'file-loader',
+                                    options: {
+                                        name: 'fonts/[name].[hash:8].[ext]'
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
             ]
         },
         output: {
