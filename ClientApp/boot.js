@@ -11,9 +11,9 @@ Vue.use(VueRouter);
 Vue.use(Vuetify);
 
 const routes = [
-    { path: "/", component: Home,name:"首頁" },
-    // { path: '/counter', component: require('./components/counter/counter.vue').default },
-    // { path: '/fetchdata', component: require('./components/fetchdata/fetchdata.vue').default }
+    { path: "/", component: Home, name: "首頁" },
+    { path: '/counter', component: () => import("./components/counter/counter.vue"), name: "計數器" },
+    { path: '/fetchdata', component: () => import("./components/fetchdata/fetchdata.vue"), name:"從伺服器取得資料" }
 ];
 
 new Vue({

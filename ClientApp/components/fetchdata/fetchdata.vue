@@ -4,52 +4,38 @@
 
         <p>This component demonstrates fetching data from the server.</p>
 
-        <table v-if="forecasts.length" class="table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in forecasts">
-                    <td>{{ item.dateFormatted }}</td>
-                    <td>{{ item.temperatureC }}</td>
-                    <td>{{ item.temperatureF }}</td>
-                    <td>{{ item.summary }}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p v-else><em>Loading...</em></p>
+        <v-data-table :headers="headers"
+                      :items="forecasts"
+                      hide-actions
+                      class="elevation-1">
+            <template slot="items"
+                      slot-scope="props">
+                <td>{{ props.item.dateFormatted }}</td>
+                <td class="text-xs-right">{{ props.item.temperatureC }}</td>
+                <td class="text-xs-right">{{ props.item.temperatureF }}</td>
+                <td class="text-xs-right">{{ props.item.summary }}</td>
+            </template>
+        </v-data-table>
     </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
-
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
-}
-
-@Component
-export default class FetchDataComponent extends Vue {
-    forecasts: WeatherForecast[] = [];
-
+<script>
+import axios from "axios";
+export default {
+    data: () => ({
+        headers: [
+            { text: "Date", value: "dateFormatted" },
+            { text: "Temp. (C)", value: "temperatureC" },
+            { text: "Temp. (F)", value: "temperatureF" },
+            { text: "Summary", value: "summary" }
+        ],
+        forecasts: []
+    }),
     mounted() {
-        fetch('api/SampleData/WeatherForecasts')
-            .then(response => response.json() as Promise<WeatherForecast[]>)
-            .then(data => {
-                this.forecasts = data;
-            });
+        axios.get("api/SampleData/WeatherForecasts").then(response => {
+            this.forecasts = response.data;
+        });
     }
-}
-
+};
 </script>
 
