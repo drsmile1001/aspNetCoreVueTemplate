@@ -2,15 +2,15 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "vhanla",
   "classifications": [ "Web", "MVC", "SPA" ],
-  "name": "ASP.NET Core 2.1 with VueJS and TypeScript",
-  "identity": "vuejs.ts",
+  "name": "ASP.NET Core 2.1 with VueJS",
+  "identity": "vuejs",
   "groupIdentity": "aspnetcore-vuejs",
-  "shortName": "vuets",
+  "shortName": "AspDotNetCoreVue",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "vuets",
+  "sourceName": "AspDotNetCoreVue",
   "preferedNameDirectory": "true",
   "sources": {
     "source": "./",

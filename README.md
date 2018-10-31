@@ -1,39 +1,29 @@
-# SPA Template for ASP.NET Core 2.1 + VueJS + TypeScript + WebPack 4
+# ASP.NET Core 2.1 + VueJS +  WebPack 4 的SPA模版
 
-This is a modified template based upon official Microsoft.AspNetCore.SpaTemplate::*
+參考原文
+https://medium.com/@vhanla/creating-a-vuejs-with-typescript-spa-on-asp-net-core-2-1-5efaee226154
 
-**IMPORTANT** It's strongly recommended to use Bootstrap 4.1.2 or newer. It's relatively easy to migrate.
+## 安裝模版:
 
-As of now, official template uses Webpack 2 and older NPM packages, and it hasn't been migrated to .Net Core 2.1.
-
-![snap](https://cdn-images-1.medium.com/max/800/1*4PCyQ7-L4a3igqxOfsjSDA.png)
-
-## This template has the following changes:
-
-- Migrated to .Net Core 2.1
-- Updated NPM packages except BootStrap 3
-- Supports WebPack 4
-
-Other than that it has minor changes to VueJS original files.
-
-## How to install:
-
-Just clone or download this repo, and install as follows:
-
+1. 複製或下載此原始碼目錄
+2. 透過此指令安裝模版
 ```
-dotnet new --install <path to this template directory>
+dotnet new --install <模版的目錄>
 ```
-You can see it listed `dotnet new -l` with the shortname `myspa` so in order to create new projects using this template just use that shortname.
+指令`dotnet new -l`可以看到目前dotnet有的模版，如安裝完成可以看到列表中有`AspDotNetCoreVue`
 
+## 使用模版
+1. 建立新專案
 ```
-dotnet new myspa -n myspa -o myspa
-cd myspa
+dotnet new AspDotNetCoreVue -n <新專案名稱> -o <新專案名稱>
+cd <新專案名稱>
 dotnet restore
-npm install
+yarn
 dotnet run
 ```
-To publish, just as usual: `dotnet publish -c release`
-
-## Disclaimer
-
-All rights belongs to the original authors, this is a repository for education purposes as part of this article at https://medium.com/@vhanla/creating-a-vuejs-with-typescript-spa-on-asp-net-core-2-1-5efaee226154
+2. 發佈
+`dotnet publish -c release`
+## 移除模版
+```
+dotnet new --uninstall <模版的目錄>
+```
