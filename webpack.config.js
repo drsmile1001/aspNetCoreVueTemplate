@@ -37,7 +37,7 @@ module.exports = (env) => {
                     }
                 ]
             },
-            { test: /\.css$/, use: isDevBuild ? ['style-loader', 'css-loader'] : ExtractTextPlugin.extract({ use: 'css-loader?minimize' }) },
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
             { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,

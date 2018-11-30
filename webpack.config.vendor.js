@@ -15,8 +15,6 @@ module.exports = (env) => {
         entry: {
             vendor: [
                 'event-source-polyfill',
-                'isomorphic-fetch',
-                'jquery',
                 'vue',
                 'vue-router'
             ],

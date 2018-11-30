@@ -5,15 +5,14 @@ import "@babel/polyfill";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Vuetify from "vuetify";
-import Home from "./components/home/home.vue";
-import App from "./components/app/app.vue";
+import App from "./components/TheApp/Layout.vue";
 Vue.use(VueRouter);
 Vue.use(Vuetify);
 
 const routes = [
-    { path: "/", component: Home, name: "首頁" },
-    { path: '/counter', component: () => import("./components/counter/counter.vue"), name: "計數器" },
-    { path: '/fetchdata', component: () => import("./components/fetchdata/fetchdata.vue"), name:"從伺服器取得資料" }
+    { path: "/", component: () => import("./components/Info/Info.vue"), name: "首頁" },
+    { path: '/Counter', component: () => import("./components/TheCounter/TheCounter.vue"), name: "計數器" },
+    { path: '/GetData', component: () => import("./components/GetData/GetData.vue"), name:"從伺服器取得資料" }
 ];
 
 new Vue({
